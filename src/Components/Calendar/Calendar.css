@@ -1,0 +1,37 @@
+.calendar {
+    border: 1px solid #ddd;
+    padding: 10px;
+    color: black;
+    width: 100%;
+    background-color: #ddd;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.calendar-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day, .calendar-date {
+    text-align: center;
+    padding: 5px;
+
+}
+
+.calendar-date {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.current-date {
+    background-color: gray;
+    color: white;
+}

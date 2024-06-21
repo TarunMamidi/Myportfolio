@@ -1,0 +1,31 @@
+body{
+  overflow: hidden;
+}
+.App {
+  background-image: url('./Assests/backg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; 
+  margin: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  font-family: Arial, sans-serif; 
+  user-select: none;
+  overflow: hidden;
+}
+
+.app-container > div {
+  position: absolute;
+  cursor: pointer;
+}
+
+.app-container > div.active {
+  z-index: 1000; /* Bring active app to the front */
+}
+
+.app-container > div {
+  z-index: 10; /* Default z-index for inactive apps */
+}

@@ -1,0 +1,74 @@
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(19, 19, 23);
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    margin-bottom: 1%;
+    border: 0.005px solid grey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%; 
+    width: auto;  
+    padding: 10px;  
+    height: 50px;
+}
+
+.app-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    margin: 0 10px; 
+    position: relative; 
+}
+
+.app-icon {
+    width: 44px;  
+    height: 44px; 
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 80px; 
+    background-color:  rgb(19, 19, 23);
+    border: 0.005px solid grey;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    margin-left: -45px;  
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

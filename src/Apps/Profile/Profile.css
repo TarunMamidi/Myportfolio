@@ -1,0 +1,147 @@
+@keyframes openAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes closeAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+.profiles-app {
+    display: flex;
+    flex-direction: column;
+    background-color: #060d19;
+    border-radius: 10px;
+    animation: openAnimation 0.1s ease-out;
+    min-width: 600px;
+    min-height: 600px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+    position: relative;
+    margin-top: 30px;
+}
+
+.profiles-app.closing {
+    animation: closeAnimation 0.1s ease-out forwards;
+}
+
+.profiles-app .topbarp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.profiles-app .window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.profiles-app .window-control-button {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.profiles-app .window-control-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.profiles-app .app-titlep {
+    font-weight: bold;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profiles-app .app-titlep img {
+    object-fit: contain;
+    width: 30px;
+    height: 30px;
+}
+
+.profiles-app .adjtop {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.profiles-app .contentp {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #3494e6 #060d19;
+    cursor: default;
+}
+
+.profiles-app .contentp::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profiles-app .contentp::-webkit-scrollbar-track {
+    background: #060d19;
+}
+
+.profiles-app .contentp::-webkit-scrollbar-thumb {
+    background-color: #3494e6;
+    border-radius: 10px;
+}
+
+.profiles-app .navbar {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    background-color: #060d19;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.profiles-app.minimized .contentp,
+.profiles-app.minimized .resizer {
+    display: none;
+}
+
+.profiles-app.maximized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    z-index: 9999;
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+}
+
+.profiles-app.maximized .topbarp {
+    margin-top: 30px;
+}

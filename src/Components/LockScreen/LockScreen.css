@@ -1,0 +1,53 @@
+.lockscreen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.487);
+    z-index: 1000;
+    opacity: 1; 
+    transition: opacity 0.3s ease, transform 0.5s ease-out; 
+    transform: translateY(0%);
+    backdrop-filter: blur(10px);
+
+}
+
+.lockscreen-container.unlocked {
+    opacity: 0; 
+    transform: translateY(-100%);
+    transition: 1s;
+}
+
+.lockscreen-content {
+    background: rgba(0, 0, 0, 0.482);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clocks {
+    font-size: 300px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.lockscreen-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #3e3f40;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lockscreen-content button:hover {
+    background: #0f0f0f;
+}

@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 2px 5px;
-    background-color: rgb(19, 19, 23);
+    background-color: rgba(19, 19, 23, 0.488);
+    backdrop-filter: blur(10px);
     color: white;
     font-family: Arial, sans-serif;
     height: 30px;

@@ -1,0 +1,32 @@
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.509);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+  }
+
+  
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border-radius: 50px;
+    border: none;
+    background-color:transparent;
+    backdrop-filter: blur(10px);
+  }
+
+
+.close-button img{
+    height: 16px;
+    width: 16px;
+    margin: 10px;
+}
+  
+

@@ -13,7 +13,7 @@ const Profile = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
     const [closing, setClosing] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
-    const [isMaximized, setIsMaximized] = useState(false);
+    const [isMaximized, setIsMaximized] = useState(true);
     const profileRef = useRef(null);
 
     const handleMouseDown = (e) => {

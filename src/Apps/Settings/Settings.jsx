@@ -4,9 +4,16 @@ import './Settings.css';
 import crossimg from '../../Assests/close.png';
 import profileimg from '../../Assests/settings.png';
 
-const Settings = ({ onClose, initialPosition, onUpdatePosition }) => {
+
+import bg1 from '../../Assests/backg.jpg';
+import bg2 from '../../Assests/back.jpg';
+import bg3 from '../../Assests/backs.jpg';
+import bg4 from '../../Assests/wallpaper.jpg';
+
+
+const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
-    const [closing,setClosing] = useState(false);
+    const [closing, setClosing] = useState(false);
     const profileRef = useRef(null);
 
     const handleMouseDown = (e) => {
@@ -45,12 +52,19 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition }) => {
                 <div className='topbars'>
                     <div className='adjtops'>
                         <h2 className='app-titles'><img src={profileimg} alt="Profile" /></h2>
-                        <h2 className='app-titles'>Profile</h2>
+                        <h2 className='app-titles'>Settings</h2>
                     </div>
                     <p className='close-buttons' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contents'>
-                    <p>This is the content of the Profile app.</p>
+                    <p className='heada'>Wallpapers</p>
+                    <div className='bg-icons'>
+                        <img src={bg1} alt="Background 1" onClick={() => updateBgImage(bg1)} />
+                        <img src={bg2} alt="Background 2" onClick={() => updateBgImage(bg2)} />
+                        <img src={bg3} alt="Background 3" onClick={() => updateBgImage(bg3)} />
+                        <img src={bg4} alt="Background 4" onClick={() => updateBgImage(bg4)} />
+                        
+                    </div>
                 </div>
                 <div
                     className='resizer'

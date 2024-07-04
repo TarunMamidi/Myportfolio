@@ -3,6 +3,7 @@ import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
 import './Calculator.css';
 import crossimg from '../../Assests/close.png';
 import calimg from '../../Assests/calculator.png';
+import BMIScale from '../../Components/Bmiscale/Bmiscale'; 
 
 const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [display, setDisplay] = useState('');
@@ -14,6 +15,13 @@ const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [initialSize, setInitialSize] = useState({ width: 400, height: 550 });
     const [isFocused, setIsFocused] = useState(false);
     const [zIndex, setZIndex] = useState(1);
+    const [mode, setMode] = useState('regular');
+    const [height, setHeight] = useState('');
+    const [weight, setWeight] = useState('');
+    const [heightUnit, setHeightUnit] = useState('cm'); 
+    const [weightUnit, setWeightUnit] = useState('kg'); 
+    const [BMIStatus, setBMIStatus] = useState('');
+    const [bmiValue, setBMIValue] = useState(0); 
 
     const evaluateExpression = useCallback(() => {
         try {
@@ -42,7 +50,7 @@ const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
         setResizeStart({ x: e.clientX, y: e.clientY });
         setIsResizing(true);
         setInitialSize({ ...size });
-        setZIndex(1000);  
+        setZIndex(1000);
     };
 
     const handleResizeMouseMove = useCallback((e) => {
@@ -59,7 +67,7 @@ const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
 
     const handleResizeMouseUp = useCallback(() => {
         setIsResizing(false);
-        setZIndex(1);  
+        setZIndex(1);
     }, []);
 
     useEffect(() => {
@@ -103,17 +111,52 @@ const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
 
     const handleFocus = () => {
         setIsFocused(true);
-        setZIndex(1000);  
+        setZIndex(1000);
     };
 
     const handleBlur = () => {
         setIsFocused(false);
-        setZIndex(1);  
+        setZIndex(1);
     };
 
     const handleClose = () => {
         setClosing(true);
         setTimeout(onClose, 500);
+    };
+
+    const handleBMICalculate = () => {
+        let heightInMeters = parseFloat(height); 
+        if (heightUnit === 'cm') {
+            heightInMeters = parseFloat(height) / 100; 
+        } else if (heightUnit === 'ft') {
+            heightInMeters = parseFloat(height) * 0.3048; 
+        } 
+
+        let weightInKg = parseFloat(weight); 
+        if (weightUnit === 'lb') {
+            weightInKg = parseFloat(weight) * 0.453592; 
+        } 
+
+        if (!isNaN(heightInMeters) && !isNaN(weightInKg) && heightInMeters > 0) {
+            const bmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
+            setDisplay(bmi);
+
+            
+            if (bmi < 18.5) {
+                setBMIStatus('Underweight');
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                setBMIStatus('Normal weight');
+            } else if (bmi >= 24.9 && bmi < 29.9) {
+                setBMIStatus('Overweight');
+            } else {
+                setBMIStatus('Obese');
+            }
+
+            
+            setBMIValue(bmi);
+        } else {
+            setDisplay('Error');
+        }
     };
 
     return (
@@ -131,32 +174,78 @@ const Calculator = ({ onClose, initialPosition, onUpdatePosition }) => {
                         <h2 className='app-titlec'><img src={calimg} alt="Calculator" /></h2>
                         <h2 className='app-titlec'>Calculator</h2>
                     </div>
+                    <div className='mode-toggle'>
+                        <button onClick={() => setMode('regular')} className={mode === 'regular' ? 'active' : ''}>Regular</button>
+                        <button onClick={() => setMode('bmi')} className={mode === 'bmi' ? 'active' : ''}>BMI</button>
+                    </div>
                     <p className='close-buttonc' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contentc'>
-                    <div className="display">{display}</div>
-                    <div className='keys'>
-                        <div className="buttons">
-                            {['7', '8', '9', '/'].map((btn) => (
-                                <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
-                            ))}
-                            {['4', '5', '6', '*'].map((btn) => (
-                                <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
-                            ))}
-                            {['1', '2', '3', '-'].map((btn) => (
-                                <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
-                            ))}
-                            {['0', '.', '=', '+'].map((btn) => (
-                                <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
-                            ))}
-                            <button className="clear-button" onClick={() => handleInput('C')} key="C">C</button>
-                        </div>
-                    </div>
+                    {mode === 'regular' ? (
+                        <>
+                            <div className="display">{display}</div>
+                            <div className='keys'>
+                                <div className="buttons">
+                                    {['7', '8', '9', '/'].map((btn) => (
+                                        <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
+                                    ))}
+                                    {['4', '5', '6', '*'].map((btn) => (
+                                        <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
+                                    ))}
+                                    {['1', '2', '3', '-'].map((btn) => (
+                                        <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
+                                    ))}
+                                    {['0', '.', '=', '+'].map((btn) => (
+                                        <button onClick={() => handleInput(btn)} key={btn}>{btn}</button>
+                                    ))}
+                                    <button className="clear-button" onClick={() => handleInput('C')} key="C">C</button>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="bmi-inputs">
+                                <div className="bmi-input">
+                                    <label htmlFor="height">Height:</label>
+                                    <input
+                                        id="height"
+                                        type="number"
+                                        value={height}
+                                        onChange={(e) => setHeight(e.target.value)}
+                                    />
+                                    <select value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+                                        <option value="m">m</option>
+                                        <option value="cm">cm</option>
+                                        <option value="ft">ft</option>
+                                    </select>
+                                </div>
+                                <div className="bmi-input">
+                                    <label htmlFor="weight">Weight:</label>
+                                    <input
+                                        id="weight"
+                                        type="number"
+                                        value={weight}
+                                        onChange={(e) => setWeight(e.target.value)}
+                                    />
+                                    <select value={weightUnit} onChange={(e) => setWeightUnit(e.target.value)}>
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                    </select>
+                                </div>
+                                <button className="calculate-button" onClick={handleBMICalculate}>Calculate BMI</button>
+                            </div>
+                            <div className='bmibox'>
+                                <BMIScale bmiValue={parseFloat(bmiValue)} />
+                                <div className="bmi-status">{BMIStatus}</div>
+                            </div>
+                            
+                        </>
+                    )}
                 </div>
                 <div
-                    className='resizer'
+                    className={`resizer ${isResizing ? 'resizing' : ''}`}
                     onMouseDown={handleResizeMouseDown}
-                />
+                ></div>
             </div>
         </DraggableWrapper>
     );

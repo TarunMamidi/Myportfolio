@@ -11,6 +11,10 @@ import BrowserApp from './Apps/BrowserApp/BrowserApp';
 import Bar from './Components/Bar/Bar';
 import CustomLoading from './Components/Loading/Loading';
 import LockScreen from './Components/LockScreen/LockScreen';
+import Search from './Apps/Search/Search';
+import Myai from './Apps/Myai/Myai';
+import Charts from './Apps/Charts/Charts';
+import defaultimg from './Assests/wallpaper.jpg'
 
 const getRandomPosition = () => {
     const appWidth = 300;
@@ -29,6 +33,7 @@ const App = () => {
     const [notification, setNotification] = useState('');
     const [loading, setLoading] = useState(true);
     const [isLocked, setIsLocked] = useState(true);
+    const [bgImage, setBgImage] = useState(defaultimg); 
 
     const handleAppDoubleClick = (appId) => {
         const existingApp = activeApps.find(app => app.id === appId);
@@ -62,7 +67,7 @@ const App = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 3000); // Simulate loading delay
+        setTimeout(() => setLoading(false), 3000); 
     }, []);
 
     const handleUnlock = () => {
@@ -92,20 +97,25 @@ const App = () => {
         setActiveApps([...activeApps, settingsApp]);
         setActiveAppId(3); 
     };
+
     const handleOpenHelp = () => {
         const helpApp = { id: 4, position: getRandomPosition() };
         setActiveApps([...activeApps, helpApp]);
         setActiveAppId(4); 
     };
-    const handleOpenBrowser  = () => {
+
+    const handleOpenBrowser = () => {
         const browserApp = { id: 7, position: getRandomPosition() };
         setActiveApps([...activeApps, browserApp]);
         setActiveAppId(7); 
     };
-    
+
+    const updateBgImage = (newImage) => {
+        setBgImage(newImage);
+    };
 
     return (
-        <div className="App">
+        <div className="App" style={{ backgroundImage: `url(${bgImage})` }}>
             {loading ? (
                 <CustomLoading />
             ) : (
@@ -138,7 +148,7 @@ const App = () => {
                                         case 2:
                                             return <About {...commonProps} />;
                                         case 3:
-                                            return <Settings {...commonProps} />;
+                                            return <Settings {...commonProps} updateBgImage={updateBgImage} />; // Pass the function as a prop
                                         case 4:
                                             return <Help {...commonProps} />;
                                         case 5:
@@ -147,6 +157,12 @@ const App = () => {
                                             return <Calculator {...commonProps} />;
                                         case 7:
                                             return <BrowserApp {...commonProps} />;
+                                        case 8:
+                                            return <Myai {...commonProps} />;
+                                        case 9:
+                                            return <Charts {...commonProps} />;
+                                        case 0:
+                                            return <Search {...commonProps} />;
                                         default:
                                             return null;
                                     }

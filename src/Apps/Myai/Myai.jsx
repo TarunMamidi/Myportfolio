@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
-import './Help.css';
+import './Myai.css';
 import crossimg from '../../Assests/close.png';
-import profileimg from '../../Assests/help.png';
+import profileimg from '../../Assests/ai.png';
 
-
-const Help = ({ onClose, initialPosition, onUpdatePosition }) => {
+const About = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
     const [closing,setClosing] = useState(false);
     const profileRef = useRef(null);
@@ -39,29 +38,19 @@ const Help = ({ onClose, initialPosition, onUpdatePosition }) => {
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
-                className={`help-app ${closing ? 'closing' : ''}`}
+                className={`myai-app ${closing ? 'closing' : ''}`}
                 style={{ width: size.width, height: size.height }}
                 ref={profileRef}
             >
-                <div className='topbarh'>
-                    <div className='adjtoph'>
-                        <h2 className='app-titleh'><img src={profileimg} alt="Profile" /></h2>
-                        <h2 className='app-titleh'>Help</h2>
+                <div className='topbarm'>
+                    <div className='adjtopm'>
+                        <h2 className='app-titlem'><img src={profileimg} alt="Profile" /></h2>
+                        <h2 className='app-titlem'>AI Chatbot</h2>
                     </div>
-                    <p className='close-buttonh' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
+                    <p className='close-buttonm' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
-                <div className='contenth'>
-                    <div className='mainhead'>
-                        <p className='hands'>🤌🏽</p>
-                        <div className='sense'>
-                            <p className='userguide'>User Guide</p>
-                            <p className='comment'>It makes Sense...</p>
-                        </div>
-                    </div>
-                    <div className='appscontext'>
-                        <p className='appshead'>👉🏾 Apps and their uses</p>
-                        <p className='profileah'></p>
-                    </div>
+                <div className='contentm'>
+                    <p>This is the content of the AI Chatbot app.</p>
                 </div>
                 <div
                     className='resizer'
@@ -72,4 +61,4 @@ const Help = ({ onClose, initialPosition, onUpdatePosition }) => {
     );
 };
 
-export default Help;
+export default About;

@@ -45,6 +45,11 @@ const BrowserApp = ({ onClose, initialPosition, onUpdatePosition }) => {
         setIframeUrl(finalUrl);
     };
 
+    const handleLinkClick = (newUrl) => {
+        setUrl(newUrl);
+        setIframeUrl(newUrl);
+    };
+
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
@@ -64,8 +69,13 @@ const BrowserApp = ({ onClose, initialPosition, onUpdatePosition }) => {
                     <p className='close-buttonb' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contentb'>
-                    {iframeUrl && <iframe src={iframeUrl} title="Browser Frame" />}
+                    <ul>
+                        <li><a href="#project1" onClick={() => handleLinkClick('https://heather-daffy-bug.glitch.me/')}>Number Verification</a></li>
+                        <li><a href="#project2" onClick={() => handleLinkClick('https://fluff-chivalrous-hisser.glitch.me/')}>Text-to-Speech</a></li>
+                        <li><a href="#project3" onClick={() => handleLinkClick('https://myportfolio-srimantarun.vercel.app/')}>Portfolio</a></li>
+                    </ul>
                 </div>
+                <iframe src={iframeUrl} title="Browser Content" style={{ width: '100%', height: 'calc(100% - 50px)' }} />
                 <div
                     className='resizer'
                     onMouseDown={handleMouseDown}

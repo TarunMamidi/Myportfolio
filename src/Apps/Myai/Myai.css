@@ -20,24 +20,22 @@
     }
 }
 
-.help-app{
+.myai-app{
     display: flex;
-    background-color:#272727;
+    background-color:rgba(62, 63, 55, 0.991);
     flex-direction: column;
     border-radius: 10px;
     height: 500px;
     width: 300px;
-    min-width: 800px;
-    min-height: 800px;
     animation: openAnimation 0.1s ease-out;
     border: 1px solid black;
 }
 
-.help-app.closing {
+.myai-app.closing {
     animation: closeAnimation 0.1s ease-out forwards;
 }
 
-.topbarh{
+.topbarm{
     display: flex;
     flex-direction: row;
     background-color: rgb(19, 19, 23);
@@ -51,85 +49,37 @@
     border-top-right-radius: 10px; 
     
 }
-.close-buttonh img{
+.close-buttonm img{
     width: 21px;
     height: 21px;
     cursor: pointer;
     margin-right: 5px; 
 }
-.topbarh p{
+.topbarm p{
     background-color:  rgb(19, 19, 23);
 }
 
-.app-titleh{
+.app-titlem{
     font-weight: bolder;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
     color: white;
 }
 
-.app-titleh img{
+.app-titlem img{
     width: 30px;
     height: 30px;
     cursor: pointer;
     margin-right: 5px;
 }
 
-.adjtoph{
+.adjtopm{
     display: flex;
     flex-direction: row;
     gap: 5px;
     align-items: center;
 }
 
-.contenth{
-    margin-top: 2%;
-    margin-right: 10%;
-    margin-left: 10%;
-    color: white;
-}
-
-.hands{
-    font-size: 40px;
-    border-radius: 100%;
-    background-color: black;
-    padding: 5px;
-}
-
-.mainhead{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3%;
-    
-    
-    
-}
-
-.userguide{
-    font-size: 40px;
-    font-family: 'Montserrat', sans-serif;
-    bottom: 0;
-    padding: 0;
-    margin: 0;
-
-}
-
-.sense{
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-.comment{
-    top: 0;
-    padding: 0;
-    margin: 0;
-    font-size: small;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.appshead{
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;  
-    color: white;
+.contentm{
+    color: black;
 }

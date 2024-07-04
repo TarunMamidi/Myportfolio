@@ -2,7 +2,7 @@ body{
   overflow: hidden;
 }
 .App {
-  background-image: url('./Assests/backg.jpg');
+  background-image: url('./Assests/wallpaper.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

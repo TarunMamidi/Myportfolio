@@ -7,17 +7,25 @@ import terminalimg from '../../Assests/terminal.png';
 import helpimg from '../../Assests/help.png';
 import calimg from '../../Assests/calculator.png'
 import browserimg from '../../Assests/browser.png'
+import searchimg from '../../Assests/search.png'
+import aiimg from '../../Assests/ai.png'
+import chartimg from '../../Assests/skill.png';
 
 
 const Appbar = ({ onAppDoubleClick }) => {
     const apps = [
         { id: 1, name: 'Profile', image: profileimg },
+        { id: 0, name: 'Search', image: searchimg },
         { id: 2, name: 'About', image: aboutimg },
         { id: 3, name: 'Settings', image: settingimg },
-        { id: 4, name: 'Help', image: helpimg },
+        { id: 4, name: 'Info', image: helpimg },
         { id: 5, name: 'Terminal', image: terminalimg },
         { id: 6, name: 'Calculator', image: calimg },
         { id: 7, name: 'Browser', image: browserimg },
+        { id: 8, name: 'AI Chatbot', image: aiimg },
+        { id: 9, name: 'Skills', image: chartimg },
+
+
     ];
 
     const handleDoubleClick = (appId) => {

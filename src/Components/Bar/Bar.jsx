@@ -83,7 +83,7 @@ const Bar = ({ notification }) => {
 
     return (
         <div className='main-bar'>
-            <p className='portfolio'>Tarun.os</p>
+            <p className='portfolio'>🤌🏽 Tarun's OS</p>
             <div className='clock' onClick={toggleMessage} ref={clockRef}>
                 {formatTime(time)}
             </div>

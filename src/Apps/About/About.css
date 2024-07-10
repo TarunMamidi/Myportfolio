@@ -29,6 +29,7 @@
     width: 300px;
     animation: openAnimation 0.1s ease-out;
     border: 1px solid black;
+    overflow: scroll;
 }
 
 .about-app.closing {

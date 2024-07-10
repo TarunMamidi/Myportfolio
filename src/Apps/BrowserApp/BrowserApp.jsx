@@ -50,6 +50,12 @@ const BrowserApp = ({ onClose, initialPosition, onUpdatePosition }) => {
         setIframeUrl(newUrl);
     };
 
+    const handleSelectChange = (e) => {
+        const selectedUrl = e.target.value;
+        setUrl(selectedUrl);
+        setIframeUrl(selectedUrl);
+    };
+
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
@@ -65,15 +71,13 @@ const BrowserApp = ({ onClose, initialPosition, onUpdatePosition }) => {
                         onChange={(e) => setUrl(e.target.value)} 
                         placeholder="Enter URL" 
                     />
-                    <button onClick={handleGoClick}>Go</button>
+                    <select onChange={handleSelectChange} value={url}>
+                        <option value="Select the Project">Select</option>
+                        <option value="https://heather-daffy-bug.glitch.me/">Number Verification</option>
+                        <option value="https://fluff-chivalrous-hisser.glitch.me/">Text-to-Speech</option>
+                        <option value="https://myportfolio-srimantarun.vercel.app/">Portfolio</option>
+                    </select>
                     <p className='close-buttonb' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
-                </div>
-                <div className='contentb'>
-                    <ul>
-                        <li><a href="#project1" onClick={() => handleLinkClick('https://heather-daffy-bug.glitch.me/')}>Number Verification</a></li>
-                        <li><a href="#project2" onClick={() => handleLinkClick('https://fluff-chivalrous-hisser.glitch.me/')}>Text-to-Speech</a></li>
-                        <li><a href="#project3" onClick={() => handleLinkClick('https://myportfolio-srimantarun.vercel.app/')}>Portfolio</a></li>
-                    </ul>
                 </div>
                 <iframe src={iframeUrl} title="Browser Content" style={{ width: '100%', height: 'calc(100% - 50px)' }} />
                 <div

@@ -7,11 +7,11 @@ import terminalimg from '../../Assests/terminal.png';
 
 
 const commands = {
-  help: "Available commands: help, about, education, skills, experience",
-  whois: "My name is Tarun. I am a FullStack developer.",
+  help: "Available commands: help, whois, education, skills, experience, and also we can open apps from terminal",
+  whois: "My name is Sriman Tarun. I am a FullStack developer.",
   education: "I have a degree in ECE from Vishnu Institute of Technology.",
   skills: "JavaScript, React, Node.js, Python, ...",
-  experience: "I have worked at Greenko Company for 2 months as an Intern in ICT services.",
+  experience: "I have worked at Greenko Company for 3 months as an Intern in ICT services.",
   profile: "Opening Profile app...",
   calculator: "Opening Calculator app...",
   about: "Opening About app...",
@@ -19,6 +19,7 @@ const commands = {
   info: "Opening Info app...",
   exit: "closing terminal...",
   settings: "Opening Settings app..."
+  
 };
 
 const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, onOpenCalculator, onOpenAbout,onOpenSettings, onOpenHelp, onOpenBrowser }) => {

@@ -50,7 +50,9 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                     <p className='close-buttona' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contenta'>
-                    <p>This is the content of the Profile app.</p>
+                   <div className='aboutos'>
+                    <p><span className='handnew'>🤌🏽</span> Tarun's OS</p>
+                   </div>
                 </div>
                 <div
                     className='resizer'

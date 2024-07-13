@@ -15,6 +15,7 @@ import Search from './Apps/Search/Search';
 import Myai from './Apps/Myai/Myai';
 import Charts from './Apps/Charts/Charts';
 import defaultimg from './Assests/wallpaper.jpg'
+import Camera from './Apps/Camera/Camera';
 
 const getRandomPosition = () => {
     const appWidth = 300;
@@ -109,6 +110,12 @@ const App = () => {
         setActiveApps([...activeApps, browserApp]);
         setActiveAppId(7); 
     };
+    const handleOpenTerminal = () =>{
+        const terminalApp = {id: 5, position: getRandomPosition() };
+        setActiveApps([...activeApps, terminalApp]);
+        setActiveAppId(5); 
+
+    }
 
     const updateBgImage = (newImage) => {
         setBgImage(newImage);
@@ -138,6 +145,7 @@ const App = () => {
                                         onOpenSettings: handleOpenSettings,
                                         onOpenHelp: handleOpenHelp,
                                         onOpenBrowser: handleOpenBrowser,
+                                        onOpenTerminal: handleOpenTerminal,
                                         onClick: () => handleAppClick(app.id),
                                         className: app.id === activeAppId ? 'active' : ''
                                     };
@@ -163,6 +171,8 @@ const App = () => {
                                             return <Charts {...commonProps} />;
                                         case 0:
                                             return <Search {...commonProps} />;
+                                        case 10:
+                                            return <Camera {...commonProps} />;
                                         default:
                                             return null;
                                     }

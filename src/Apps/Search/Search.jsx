@@ -3,7 +3,7 @@ import './Search.css';
 
 import crossimg from '../../Assests/cross.png'; 
 
-const Search = ({ onClose, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenSettings, onOpenHelp, onOpenBrowser }) => {
+const Search = ({ onClose, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenSettings, onOpenHelp, onOpenBrowser , onOpenTerminal}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
 
@@ -49,6 +49,9 @@ const Search = ({ onClose, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenS
         break;
       case 'browser':
         onOpenBrowser();
+        break;
+      case 'Terminal':
+        onOpenTerminal();
         break;
       case 'exit':
         handleClose();

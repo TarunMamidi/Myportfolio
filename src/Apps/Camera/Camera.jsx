@@ -1,21 +1,16 @@
 import React, { useState, useRef } from 'react';
 import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
-import './Settings.css';
+import { Camera as ReactCameraPro } from 'react-camera-pro';
+import './Camera.css';
 import crossimg from '../../Assests/close.png';
-import profileimg from '../../Assests/settings.png';
+import profileimg from '../../Assests/camera.png';
 
-
-import bg1 from '../../Assests/backg.jpg';
-import bg2 from '../../Assests/back.jpg';
-import bg3 from '../../Assests/backs.jpg';
-import bg4 from '../../Assests/wallpaper.jpg';
-import bg5 from '../../Assests/gbackh.jpg';
-
-
-const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage }) => {
+const Camera = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
     const [closing, setClosing] = useState(false);
     const profileRef = useRef(null);
+    const cameraRef = useRef(null);
+    const [image, setImage] = useState(null);
 
     const handleMouseDown = (e) => {
         const startX = e.clientX;
@@ -46,26 +41,21 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage })
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
-                className={`settings-app ${closing ? 'closing' : ''}`}
+                className={`camera-app ${closing ? 'closing' : ''}`}
                 style={{ width: size.width, height: size.height }}
                 ref={profileRef}
             >
-                <div className='topbars'>
-                    <div className='adjtops'>
-                        <h2 className='app-titles'><img src={profileimg} alt="Profile" /></h2>
-                        <h2 className='app-titles'>Settings</h2>
+                <div className='topbara'>
+                    <div className='adjtopa'>
+                        <h2 className='app-titleca'><img src={profileimg} alt="Profile" /></h2>
+                        <h2 className='app-titleca'>Camera</h2>
                     </div>
-                    <p className='close-buttons' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
+                    <p className='close-buttonca' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
-                <div className='contents'>
-                    <p className='heada'>Wallpapers</p>
-                    <div className='bg-icons'>
-                        <img src={bg1} alt="Background 1" onClick={() => updateBgImage(bg1)} />
-                        <img src={bg2} alt="Background 2" onClick={() => updateBgImage(bg2)} />
-                        <img src={bg3} alt="Background 3" onClick={() => updateBgImage(bg3)} />
-                        <img src={bg4} alt="Background 4" onClick={() => updateBgImage(bg4)} />
-                        <img src={bg5} alt="Background 5" onClick={() => updateBgImage(bg5)} />
-                    </div>
+                <div className='contentca'>
+                    <ReactCameraPro ref={cameraRef} aspectRatio={16/9} />
+                    <button onClick={() => setImage(cameraRef.current.takePhoto())}>Take photo</button>
+                    {image && <img src={image} alt='Taken photo'/>}
                 </div>
                 <div
                     className='resizer'
@@ -76,4 +66,4 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage })
     );
 };
 
-export default Settings;
+export default Camera;

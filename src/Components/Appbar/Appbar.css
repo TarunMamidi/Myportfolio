@@ -1,3 +1,4 @@
+/* Base styles */
 .appbar-container {
     position: fixed;
     bottom: 0;
@@ -122,8 +123,6 @@
     font-size: 20px;
     color: white;
     padding: 10px;
-
-
 }
 
 .menu-list {
@@ -173,4 +172,48 @@
 .unpinned{
     width: 30px;
     height: 30px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* Tablet styles */
+    .appbar {
+        height: 45px;
+        padding: 8px;
+    }
+    .menu-icon-img, .app-icon {
+        width: 40px;  
+        height: 40px;
+    }
+    .tooltiptext {
+        width: 70px;
+        margin-left: -35px;
+    }
+    .app-menu {
+        width: 80%;
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Phone styles */
+    .appbar {
+        height: 40px;
+        padding: 6px;
+    }
+    .menu-icon-img, .app-icon {
+        width: 36px;  
+        height: 36px;
+    }
+    .tooltiptext {
+        width: 60px;
+        margin-left: -30px;
+    }
+    .app-menu {
+        width: 90%;
+        height: 350px;
+    }
+    .app-name {
+        display: none;
+    }
 }

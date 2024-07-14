@@ -3,10 +3,12 @@ import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
 import './About.css';
 import crossimg from '../../Assests/close.png';
 import profileimg from '../../Assests/aboutimg.png';
+import closeimg from '../../Assests/close.png'
 
 const About = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
-    const [closing,setClosing] = useState(false);
+    const [closing, setClosing] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
     const profileRef = useRef(null);
 
     const handleMouseDown = (e) => {
@@ -32,7 +34,11 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
 
     const handleClose = () => {
         setClosing(true);
-        setTimeout(onClose, 500); 
+        setTimeout(onClose, 500);
+    };
+
+    const togglePopup = () => {
+        setShowPopup(!showPopup); 
     };
 
     return (
@@ -50,10 +56,58 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                     <p className='close-buttona' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contenta'>
-                   <div className='aboutos'>
-                    <p><span className='handnew'>🤌🏽</span> Tarun's OS</p>
-                   </div>
+                    <div className='aboutos'>
+                        <p><span className='handnew'>🤌🏽</span> Tarun's OS</p>
+                        <div className='about-sec-main'>
+                            <div className='about-sec'>
+                                <p className='dn'> Device Name</p>
+                                <p className='dns'> Tarun's Laptop</p>
+                            </div>
+                            <div className='about-sec-pen'>
+                                <p>🖉</p>
+                            </div>
+                        </div>
+                        <div className='adjabout'>
+                            <div className='about-sec-1-t'>
+                                <p className='about-content'>Operating System</p>
+                                <p className='about-content-c'>Tarun's OS 1.0 LTS</p>
+                            </div>
+                            <div className='about-sec-1'>
+                                <p className='about-content'>Built With</p>
+                                <p className='about-content-c'>ReactJS</p>
+                            </div>
+                            <div className='about-sec-1'>
+                                <p className='about-content'>Inspired From</p>
+                                <p className='about-content-c'>Ubuntu</p>
+                            </div>
+                            <div className='about-sec-1'>
+                                <p className='about-content'>Type of OS</p>
+                                <p className='about-content-c'>Linux</p>
+                            </div>
+                            <div className='about-sec-1-b' onClick={togglePopup}>
+                                <p className='about-content'>System Details</p>
+                                <p className='about-content-c'>⮚</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                {showPopup && (
+                    <div className='popup'>
+                        <div className='popup-content'>
+                            <div className='popupmain'>
+                                <p className='popuphead'>System Details</p>
+                                <div className='copy'>
+                                    <p className='copyopt'>㊢ Copy</p>
+                                    <p className='crossimg' onClick={togglePopup}><img src={closeimg} alt="" /></p>
+                                </div>
+                            </div>
+                            <p>Processor: Intel Core i7</p>
+                            <p>RAM: 16GB</p>
+                            <p>Storage: 512GB SSD</p>
+                            
+                        </div>
+                    </div>
+                )}
                 <div
                     className='resizer'
                     onMouseDown={handleMouseDown}

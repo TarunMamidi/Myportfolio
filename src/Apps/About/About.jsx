@@ -3,12 +3,13 @@ import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
 import './About.css';
 import crossimg from '../../Assests/close.png';
 import profileimg from '../../Assests/aboutimg.png';
-import closeimg from '../../Assests/close.png'
+import closeimg from '../../Assests/close.png';
 
 const About = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
     const [closing, setClosing] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const [copied, setCopied] = useState(false);
     const profileRef = useRef(null);
 
     const handleMouseDown = (e) => {
@@ -41,12 +42,25 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
         setShowPopup(!showPopup); 
     };
 
+    const handleCopy = () => {
+        const githubLink = 'https://github.com/TarunMamidi/Myportfolio';
+        const linkedInLink = 'https://www.linkedin.com/in/sriman-tarun-mamidi-aa5371243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBh9kcxBaRVqLF2Uyp9zjGQ%3D%3D';
+        const details = `Github Repo: ${githubLink}\nLinkedIn: ${linkedInLink}`;
+
+        navigator.clipboard.writeText(details).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000); 
+        }).catch((err) => {
+            console.error('Failed to copy text: ', err);
+        });
+    };
+
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
-                className={`about-app ${closing ? 'closing' : ''}`}
-                style={{ width: size.width, height: size.height }}
-                ref={profileRef}
+                 className={`about-app ${closing ? 'closing' : ''} ${showPopup ? 'blur' : ''}`}
+                 style={{ width: size.width, height: size.height }}
+                 ref={profileRef}
             >
                 <div className='topbara'>
                     <div className='adjtopa'>
@@ -85,7 +99,7 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                                 <p className='about-content-c'>Linux</p>
                             </div>
                             <div className='about-sec-1-b' onClick={togglePopup}>
-                                <p className='about-content'>System Details</p>
+                                <p className='about-content'>Project Details</p>
                                 <p className='about-content-c'>⮚</p>
                             </div>
                         </div>
@@ -95,16 +109,22 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                     <div className='popup'>
                         <div className='popup-content'>
                             <div className='popupmain'>
-                                <p className='popuphead'>System Details</p>
+                                <p className='popuphead'>Project Details</p>
                                 <div className='copy'>
-                                    <p className='copyopt'>㊢ Copy</p>
-                                    <p className='crossimg' onClick={togglePopup}><img src={closeimg} alt="" /></p>
+                                    <p className='copyopt' onClick={handleCopy}>
+                                        {copied ? 'Copied' : '㊢ Copy'}
+                                    </p>
+                                    <p className='crossimg' onClick={togglePopup}><img src={closeimg} alt="Close" /></p>
                                 </div>
                             </div>
-                            <p>Processor: Intel Core i7</p>
-                            <p>RAM: 16GB</p>
-                            <p>Storage: 512GB SSD</p>
-                            
+                            <div className='popupdet'>
+                                <p>Github Repo</p>
+                                <a href='https://github.com/TarunMamidi/Myportfolio' style={{textDecoration:'none', color:'#9d9d9d'}}>Git Repo</a>
+                            </div>
+                            <div className='popupdet-1'>
+                                <p>LinkedIn</p>
+                                <a href='https://www.linkedin.com/in/sriman-tarun-mamidi-aa5371243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBh9kcxBaRVqLF2Uyp9zjGQ%3D%3D' style={{textDecoration:'none', color:'#9d9d9d'}}>LinkedIn</a>
+                            </div>
                         </div>
                     </div>
                 )}

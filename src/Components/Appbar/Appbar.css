@@ -1,4 +1,4 @@
-/* Base styles */
+
 .appbar-container {
     position: fixed;
     bottom: 0;
@@ -46,6 +46,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .app-item {
@@ -56,6 +57,8 @@
     cursor: pointer;
     margin: 0 10px; 
     position: relative; 
+    
+
 }
 
 .app-icon {
@@ -111,6 +114,7 @@
     overflow-x: hidden;
     scrollbar-color: #3d464e #060d19;
     scrollbar-width: thin;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .search-inputs {

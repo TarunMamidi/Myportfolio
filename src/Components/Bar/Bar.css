@@ -1,12 +1,12 @@
 .main-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 2px 5px;
     background-color: rgba(19, 19, 23, 0.488);
     backdrop-filter: blur(10px);
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     height: 30px;
     position: relative;
     cursor: default;
@@ -22,12 +22,14 @@
 .clock {
     flex: 1;
     font-size: 15px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Montserrat', sans-serif;;
     text-align: center;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-right: 6%;
     cursor: pointer;
+    margin-left: -2%;
+
 }
 
 .fullscreen-button {
@@ -37,7 +39,7 @@
     color: white;
     border: none;
     border-radius: 4px;
-    background-color: rgb(19, 19, 23);
+    
 }
 
 .message-box {

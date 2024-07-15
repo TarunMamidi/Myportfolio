@@ -22,8 +22,8 @@
 
 .settings-app {
     display: flex;
-    background-color: #2c2c2c;
     flex-direction: column;
+    background-color: #2c2c2c;
     border-radius: 10px;
     height: 600px;
     width: 600px;
@@ -32,7 +32,7 @@
     min-height: 600px;
     animation: openAnimation 0.1s ease-out;
     border: 1px solid black;
-    transition: background-image 0.5s ease-in-out; /* Added transition for background image */
+    transition: background-image 0.5s ease-in-out;
 }
 
 .settings-app.closing {
@@ -60,10 +60,6 @@
     margin-right: 5px;
 }
 
-.topbars p {
-    background-color: rgb(19, 19, 23);
-}
-
 .app-titles {
     font-weight: bolder;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -86,9 +82,38 @@
 }
 
 .contents {
-    color: black;
-    cursor: default;
+    display: flex;
+    height: calc(100% - 40px);
 }
+
+.sidebar {
+    width: 20%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
+
+.sidebar ul li:hover, .sidebar ul li.active {
+    background-color: #444;
+}
+
+.main-content {
+    width: 80%;
+}
+
 
 .heada {
     display: flex;
@@ -102,17 +127,16 @@
     border-radius: 10px;
     margin-left: 20%;
     margin-right: 20%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .bg-icons {
     display: grid;
-    justify-content: space-around;
-    gap: 50px;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 10%;
-    margin-right: 20%;
-    margin-top: 10%;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    margin: 12%;
 }
 
 .bg-icons img {
@@ -121,30 +145,10 @@
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 10px;
-    transition: border 0.3s, transform 0.5s; /* Added transition for border and transform */
+    transition: border 0.3s, transform 0.5s; 
 }
 
 .bg-icons img:hover {
     border: 2px solid #007BFF;
-    transform: scale(1.05); /* Example of transform on hover */
-}
-
-@media (max-width: 768px) {
-    .bg-icons {
-        display: grid;
-        justify-content: space-around;
-        gap: 50px;
-        grid-template-columns: 1fr 1fr;
-        margin-left: 10%;
-        margin-right: 20%;
-        margin-top: 10%;
-    }
-
-    .bg-icons img {
-        width: 100px;
-        height: 50px;
-        cursor: pointer;
-        border: 2px solid transparent;
-        transition: border 0.3s, transform 0.5s; 
-    }
+    transform: scale(1.05); 
 }

@@ -54,8 +54,8 @@ const Camera = ({ onClose, initialPosition, onUpdatePosition }) => {
                 </div>
                 <div className='contentca'>
                     <ReactCameraPro ref={cameraRef} aspectRatio={16/9} />
-                    <button onClick={() => setImage(cameraRef.current.takePhoto())}>Take photo</button>
-                    {image && <img src={image} alt='Taken photo'/>}
+                    <button onClick={() => setImage(cameraRef.current.takePhoto())}>📷</button>
+                    {image && <img src={image} alt='Taken'/>}
                 </div>
                 <div
                     className='resizer'

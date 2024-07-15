@@ -44,7 +44,7 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
 
     const handleCopy = () => {
         const githubLink = 'https://github.com/TarunMamidi/Myportfolio';
-        const linkedInLink = 'https://www.linkedin.com/in/sriman-tarun-mamidi-aa5371243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBh9kcxBaRVqLF2Uyp9zjGQ%3D%3D';
+        const linkedInLink = 'https://www.linkedin.com/in/sriman-tarun-mamidi/';
         const details = `Github Repo: ${githubLink}\nLinkedIn: ${linkedInLink}`;
 
         navigator.clipboard.writeText(details).then(() => {
@@ -112,7 +112,7 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                                 <p className='popuphead'>Project Details</p>
                                 <div className='copy'>
                                     <p className='copyopt' onClick={handleCopy}>
-                                        {copied ? 'Copied' : '㊢ Copy'}
+                                        {copied ? '㊢ Copied' : '㊢ Copy'}
                                     </p>
                                     <p className='crossimg' onClick={togglePopup}><img src={closeimg} alt="Close" /></p>
                                 </div>
@@ -123,7 +123,7 @@ const About = ({ onClose, initialPosition, onUpdatePosition }) => {
                             </div>
                             <div className='popupdet-1'>
                                 <p>LinkedIn</p>
-                                <a href='https://www.linkedin.com/in/sriman-tarun-mamidi-aa5371243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBh9kcxBaRVqLF2Uyp9zjGQ%3D%3D' style={{textDecoration:'none', color:'#9d9d9d'}}>LinkedIn</a>
+                                <a href='https://www.linkedin.com/in/sriman-tarun-mamidi/' style={{textDecoration:'none', color:'#9d9d9d'}}>LinkedIn</a>
                             </div>
                         </div>
                     </div>

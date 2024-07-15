@@ -4,17 +4,16 @@ import './Settings.css';
 import crossimg from '../../Assests/close.png';
 import profileimg from '../../Assests/settings.png';
 
-
 import bg1 from '../../Assests/backg.jpg';
 import bg2 from '../../Assests/back.jpg';
 import bg3 from '../../Assests/backs.jpg';
 import bg4 from '../../Assests/wallpaper.jpg';
 import bg5 from '../../Assests/gbackh.jpg';
 
-
-const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage }) => {
-    const [size, setSize] = useState({ width: 400, height: 300 });
+const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage, toggleTimeFormat }) => {
+    const [size, setSize] = useState({ width: 600, height: 400 });
     const [closing, setClosing] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('wallpapers');
     const profileRef = useRef(null);
 
     const handleMouseDown = (e) => {
@@ -43,6 +42,34 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage })
         setTimeout(onClose, 500); 
     };
 
+    const renderContent = () => {
+        switch (selectedOption) {
+            case 'wallpapers':
+                return (
+                    <>
+                        <p className='heada'>Wallpapers</p>
+                        <div className='bg-icons'>
+                            <img src={bg1} alt="Background 1" onClick={() => updateBgImage(bg1)} />
+                            <img src={bg2} alt="Background 2" onClick={() => updateBgImage(bg2)} />
+                            <img src={bg3} alt="Background 3" onClick={() => updateBgImage(bg3)} />
+                            <img src={bg4} alt="Background 4" onClick={() => updateBgImage(bg4)} />
+                            <img src={bg5} alt="Background 5" onClick={() => updateBgImage(bg5)} />
+                        </div>
+                    </>
+                );
+            case 'timeFormat':
+                return (
+                    <div className='time-format-settings'>
+                        <button className='time-format-toggle' onClick={toggleTimeFormat}>
+                            Change Time Format
+                        </button>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
@@ -58,13 +85,15 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage })
                     <p className='close-buttons' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contents'>
-                    <p className='heada'>Wallpapers</p>
-                    <div className='bg-icons'>
-                        <img src={bg1} alt="Background 1" onClick={() => updateBgImage(bg1)} />
-                        <img src={bg2} alt="Background 2" onClick={() => updateBgImage(bg2)} />
-                        <img src={bg3} alt="Background 3" onClick={() => updateBgImage(bg3)} />
-                        <img src={bg4} alt="Background 4" onClick={() => updateBgImage(bg4)} />
-                        <img src={bg5} alt="Background 5" onClick={() => updateBgImage(bg5)} />
+                    <div className='sidebar'>
+                        <ul>
+                            <li className={selectedOption === 'wallpapers' ? 'active' : ''} onClick={() => setSelectedOption('wallpapers')}>Wallpapers</li>
+                            <li className={selectedOption === 'timeFormat' ? 'active' : ''} onClick={() => setSelectedOption('timeFormat')}>Time Format</li>
+                            {/* Add more settings options here */}
+                        </ul>
+                    </div>
+                    <div className='main-content'>
+                        {renderContent()}
                     </div>
                 </div>
                 <div

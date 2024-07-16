@@ -23,9 +23,9 @@ body{
 }
 
 .app-container > div.active {
-  z-index: 1000; /* Bring active app to the front */
+  z-index: 1000; 
 }
 
 .app-container > div {
-  z-index: 10; /* Default z-index for inactive apps */
+  z-index: 10; 
 }

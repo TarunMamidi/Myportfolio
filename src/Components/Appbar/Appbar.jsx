@@ -96,7 +96,7 @@ const Appbar = ({ onAppDoubleClick }) => {
                         <li
                             key={app.id}
                             className="app-item"
-                            onDoubleClick={() => handleAppClick(app.id)}
+                            onClick={() => handleAppClick(app.id)}
                         >
                             <div className="tooltip">
                                 <img src={app.image} alt={app.name} className="app-icon" />

@@ -89,7 +89,7 @@ const Settings = ({ onClose, initialPosition, onUpdatePosition, updateBgImage, t
                         <ul>
                             <li className={selectedOption === 'wallpapers' ? 'active' : ''} onClick={() => setSelectedOption('wallpapers')}>Wallpapers</li>
                             <li className={selectedOption === 'timeFormat' ? 'active' : ''} onClick={() => setSelectedOption('timeFormat')}>Time Format</li>
-                            {/* Add more settings options here */}
+                            
                         </ul>
                     </div>
                     <div className='main-content'>

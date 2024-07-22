@@ -13,6 +13,7 @@ import chartimg from '../../Assests/skill.png';
 import cameraimg from '../../Assests/camera.png';
 import pinnedimg from '../../Assests/pinned.png';
 import unpinnedimg from '../../Assests/unpinned.png'
+import cusimg from '../../Assests/cuscur.png'
 
 
 const Appbar = ({ onAppDoubleClick }) => {
@@ -89,7 +90,7 @@ const Appbar = ({ onAppDoubleClick }) => {
         <div className="appbar-container">
             <div className="appbar">
                 <div className="app-item" onClick={toggleMenu}>
-                    <p className='appmenu'>🤌🏽</p>
+                    <p className='appmenu'><img src={cusimg} alt="" /></p>
                 </div>
                 <ul className="app-list">
                     {pinnedApps.map(app => (
@@ -129,14 +130,15 @@ const Appbar = ({ onAppDoubleClick }) => {
                             </li>
                         ))}
                     </ul>
-                    <input
-                        type="text"
-                        placeholder="🔍 Search"
-                        className='search-inputs'
-                        value={searchInput}
-                        onChange={handleInputChange}
-                        onKeyPress={handleInputKeyPress}
-                    />
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            className='search-inputs'
+                            value={searchInput}
+                            onChange={handleInputChange}
+                            onKeyPress={handleInputKeyPress}
+                        />
+                    
                 </div>
             )}
         </div>

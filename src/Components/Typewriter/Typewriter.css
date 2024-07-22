@@ -4,11 +4,12 @@
   font-family: 'Courier New', Courier, monospace;
   margin-left: 10%;
   margin-right: 10%;
+  cursor: url('../../Assests/cuscur.png');
 }
 
 .namas {
   font-size: 40px;
-  margin-top: 6%;
+  margin-top: 10%;
 }
 
 .gradient-text {
@@ -123,6 +124,7 @@
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0% cover 20%;
+  margin-top: 30%;
 }
 
 .grid-container {

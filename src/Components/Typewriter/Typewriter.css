@@ -1,3 +1,4 @@
+/* Global Styles */
 .typemain {
   height: 100vh;
   color: white;
@@ -7,11 +8,14 @@
   cursor: url('../../Assests/cuscur.png');
 }
 
+/* Main Container */
 .namas {
   font-size: 40px;
   margin-top: 10%;
+  animation: fadeIn 1s ease-out;
 }
 
+/* Gradient Text */
 .gradient-text {
   background: linear-gradient(to right, #3494e6, #ec6ead);
   background-clip: text;
@@ -21,14 +25,17 @@
   animation: gradient-animation 5s ease infinite;
 }
 
+/* Box */
 .box {
   margin-right: 40%;
 }
 
+/* Size Cursor */
 .sizecur {
   font-size: 200px;
 }
 
+/* Myself Section */
 .myself {
   font-size: 30px;
   font-weight: lighter;
@@ -36,12 +43,15 @@
   background: linear-gradient(rgba(50, 50, 50, 0.5), rgba(255, 255, 255, 0.195));
   color: white;
   border-radius: 5px;
+  animation: slideIn 1s ease-out;
 }
 
+/* Head Section */
 .head {
   display: flex;
   align-items: center;
   margin-top: 15%;
+  animation: fadeInUp 1s ease-out;
 }
 
 .about-text {
@@ -51,8 +61,10 @@
   background-clip: text;
   color: transparent;
   background-size: 200% 200%;
+  animation: gradient-animation 5s ease infinite;
 }
 
+/* Line */
 .line {
   flex-grow: 1;
   height: 2px;
@@ -61,12 +73,42 @@
   animation: gradient-line-animation 5s ease infinite;
 }
 
+/* Frontend Section */
 .frontend {
   text-align: center;
   font-size: 30px;
   margin-top: 2%;
+  animation: fadeIn 1s ease-out;
 }
 
+.frontend > div:first-child {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.frontend > div:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(45deg, #3494e6, #ec6ead);
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+              0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Handshake Animation */
+.handshake {
+  font-size: 25px;
+  display: inline-block;
+  animation: wave-animation 2s infinite;
+  transform-origin: 70% 70%;
+}
+
+/* Keyframe Animations */
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -91,13 +133,6 @@
   }
 }
 
-.handshake {
-  font-size: 25px;
-  display: inline-block;
-  animation: wave-animation 2s infinite;
-  transform-origin: 70% 70%;
-}
-
 @keyframes wave-animation {
   0% { transform: rotate(0deg); }
   10% { transform: rotate(14deg); }
@@ -109,17 +144,40 @@
   100% { transform: rotate(0deg); }
 }
 
-@keyframes appear {
-  from {
+@keyframes fadeIn {
+  0% {
     opacity: 0;
-    scale: 0.5;
+    transform: scale(0.9);
   }
-  to {
+  100% {
     opacity: 1;
-    scale: 1;
+    transform: scale(1);
   }
 }
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Block Animation */
 .block {
   animation: appear linear;
   animation-timeline: view();
@@ -127,12 +185,15 @@
   margin-top: 30%;
 }
 
+/* Grid Container */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 5%;
+  gap: 10px;
 }
 
+/* Component Styles */
 .comp {
   display: flex;
   align-items: center;
@@ -146,8 +207,8 @@
   transition: 0.5s;
 }
 
-.comp:hover{
-  transform: translate(-5px,-5px);
+.comp:hover {
+  transform: translate(-5px, -5px);
   transition: 0.5s;
   box-shadow: 0 10px 30px rgba(236, 110, 173, 0.5),
               0 15px 40px rgba(52, 148, 230, 0.5);
@@ -159,21 +220,98 @@
   margin-right: 10px; 
 }
 
-.frontend > div:first-child {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
+/* Media Queries */
+@media (max-width: 1200px) {
+  .namas {
+    font-size: 30px;
+  }
+
+  .gradient-text {
+    font-size: 50px;
+  }
+
+  .myself {
+    font-size: 28px;
+  }
+
+  .head {
+    margin-top: 10%;
+  }
+
+  .about-text {
+    font-size: 35px;
+  }
+
+  .frontend {
+    font-size: 28px;
+  }
+
+  .handshake {
+    font-size: 22px;
+  }
+
+  .sizecur {
+    font-size: 150px;
+  }
+
+  .block {
+    margin-top: 25%;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .comp {
+    padding: 4%;
+  }
 }
 
-.frontend > div:first-child::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(45deg, #3494e6, #ec6ead);
-  border-radius: 2px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
-              0 15px 40px rgba(0, 0, 0, 0.25);
+@media (max-width: 992px) {
+  
+  .namas {
+    font-size: 30px;
+  }
+
+  .gradient-text {
+    font-size: 50px;
+  }
+
+  .myself {
+    font-size: 28px;
+  }
+
+  .head {
+    margin-top: 10%;
+  }
+
+  .about-text {
+    font-size: 35px;
+  }
+
+  .frontend {
+    font-size: 28px;
+  }
+
+  .handshake {
+    font-size: 22px;
+  }
+
+  .sizecur {
+    font-size: 150px;
+  }
+
+  .block {
+    margin-top: 25%;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .comp {
+    padding: 4%;
+  }
+
+
 }

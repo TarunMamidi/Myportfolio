@@ -145,3 +145,74 @@
 .profiles-app.maximized .topbarp {
     margin-top: 30px;
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .profiles-app {
+        min-width: 500px;
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 992px) {
+    .profiles-app {
+        min-width: 400px;
+        min-height: 400px;
+    }
+    .profiles-app .topbarp {
+        font-size: 14px;
+        height: 35px;
+    }
+    .profiles-app .app-titlep img {
+        width: 25px;
+        height: 25px;
+    }
+    .profiles-app .window-control-button {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profiles-app {
+        min-width: 300px;
+        min-height: 300px;
+    }
+    .profiles-app .topbarp {
+        font-size: 12px;
+        height: 30px;
+    }
+    .profiles-app .app-titlep img {
+        width: 20px;
+        height: 20px;
+    }
+    .profiles-app .window-control-button {
+        width: 18px;
+        height: 18px;
+    }
+    .profiles-app .contentp {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .profiles-app {
+        min-width: 250px;
+        min-height: 250px;
+    }
+    .profiles-app .topbarp {
+        font-size: 10px;
+        height: 25px;
+    }
+    .profiles-app .app-titlep img {
+        width: 15px;
+        height: 15px;
+    }
+    .profiles-app .window-control-button {
+        width: 15px;
+        height: 15px;
+    }
+    .profiles-app .contentp {
+        padding: 5px;
+    }
+}

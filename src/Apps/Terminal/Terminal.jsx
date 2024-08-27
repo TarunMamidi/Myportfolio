@@ -5,7 +5,6 @@ import './Terminal.css';
 import crossimg from '../../Assests/close.png';
 import terminalimg from '../../Assests/terminal.png';
 
-
 const commands = {
   help: "Available commands: help, whois, education, skills, experience, and also we can open apps from terminal",
   whois: "My name is Sriman Tarun. I am a FullStack developer.",
@@ -19,25 +18,47 @@ const commands = {
   info: "Opening Info app...",
   exit: "closing terminal...",
   settings: "Opening Settings app..."
-  
 };
 
-const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, onOpenCalculator, onOpenAbout,onOpenSettings, onOpenHelp, onOpenBrowser }) => {
+const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenSettings, onOpenHelp, onOpenBrowser }) => {
   const [size, setSize] = useState({ width: 400, height: 300 });
   const [closing, setClosing] = useState(false);
   const [input, setInput] = useState('');
   const [output, setOutput] = useState([]);
   const terminalRef = useRef(null);
+  const cursorRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    return () => {
-      output.forEach(item => {
-        if (item.typedInstance) {
-          item.typedInstance.destroy();
-        }
-      });
+    const updateCursorPosition = () => {
+      const inputElement = inputRef.current;
+      const cursorElement = cursorRef.current;
+
+      if (inputElement && cursorElement) {
+        const text = inputElement.value.substring(0, inputElement.selectionStart);
+        const textWidth = getTextWidth(text, inputElement.style.fontFamily, inputElement.style.fontSize);
+
+        cursorElement.style.left = `${textWidth}px`;
+      }
     };
-  }, [output]);
+
+    const getTextWidth = (text, fontFamily, fontSize) => {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.font = `${fontSize} ${fontFamily}`;
+        return context.measureText(text).width;
+      }
+      return 0;
+    };
+
+    updateCursorPosition();
+
+    window.addEventListener('resize', updateCursorPosition);
+    return () => {
+      window.removeEventListener('resize', updateCursorPosition);
+    };
+  }, [input]);
 
   const handleMouseDown = (e) => {
     const startX = e.clientX;
@@ -93,30 +114,28 @@ const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, o
             newOutput[lastIndex].typedInstance = typedInstance;
           }
 
-          
           if (command === 'profile') {
             onOpenProfile(); 
           }
-          if( command==='calculator'){
+          if (command === 'calculator') {
             onOpenCalculator();
           }
-          if( command==='about'){
+          if (command === 'about') {
             onOpenAbout();
           }
-          if( command==='settings'){
+          if (command === 'settings') {
             onOpenSettings();
           }
-          if( command==='info'){
+          if (command === 'info') {
             onOpenHelp();
           }
-          if(command === 'exit'){
+          if (command === 'exit') {
             handleClose();
           }
-          if(command === 'browser'){
+          if (command === 'browser') {
             onOpenBrowser();
           }
-        
-          
+
         }, 0);
       }
       setInput('');
@@ -145,6 +164,7 @@ const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, o
             </div>
           ))}
           <div className="input-line">
+            
             <div className="prompt">{`Tarun's-portfolio~:$ `}</div>
             <input
               className="terminal-input"
@@ -153,8 +173,9 @@ const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, o
               onChange={handleInputChange}
               onKeyPress={handleInputKeyPress}
               autoFocus
+              ref={inputRef}
             />
-            <span className="blinking-cursor">█</span>
+            <span className="blinking-cursor" ref={cursorRef}>█</span>
           </div>
         </div>
         <div

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { GoogleLogin } from 'react-google-login';
+
 import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
 import { Camera as ReactCameraPro } from 'react-camera-pro';
 import './Camera.css';
@@ -12,7 +12,7 @@ const Camera = ({ onClose, initialPosition, onUpdatePosition }) => {
     const profileRef = useRef(null);
     const cameraRef = useRef(null);
     const [image, setImage] = useState(null);
-    const [accessToken, setAccessToken] = useState(null);
+    
 
     const handleMouseDown = (e) => {
         const startX = e.clientX;
@@ -40,52 +40,12 @@ const Camera = ({ onClose, initialPosition, onUpdatePosition }) => {
         setTimeout(onClose, 500); 
     };
 
-    const handleLoginSuccess = (response) => {
-        console.log('Login Success:', response);
-        setAccessToken(response.accessToken); // Store the access token
-    };
-
-    const handleLoginFailure = (response) => {
-        console.log('Login Failed:', response);
-    };
-
-    const uploadToGooglePhotos = async (imageData) => {
-        if (!accessToken) return;
-
-        const response = await fetch('https://photoslibrary.googleapis.com/v1/uploads', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/octet-stream',
-                'X-Goog-Upload-File-Name': 'photo.jpg',
-                'X-Goog-Upload-Protocol': 'raw',
-            },
-            body: imageData,
-        });
-
-        const uploadToken = await response.text();
-        console.log('Upload Token:', uploadToken);
-
-        await fetch('https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                newMediaItems: [{
-                    simpleMediaItem: {
-                        uploadToken: uploadToken,
-                    },
-                }],
-            }),
-        });
-    };
+    
 
     const handlePhotoTaken = () => {
         const image = cameraRef.current.takePhoto();
         setImage(image);
-        uploadToGooglePhotos(image); // Upload to Google Photos
+        
     };
 
     return (
@@ -103,14 +63,7 @@ const Camera = ({ onClose, initialPosition, onUpdatePosition }) => {
                     <p className='close-buttonca' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>
                 <div className='contentca'>
-                    <GoogleLogin
-                        clientId="1035767576447-g7k0vg5tpnt0ggt89jcofki196cj6djl.apps.googleusercontent.com"
-                        buttonText="Login with Google"
-                        onSuccess={handleLoginSuccess}
-                        onFailure={handleLoginFailure}
-                        cookiePolicy={'single_host_origin'}
-                        scope="https://www.googleapis.com/auth/photoslibrary.appendonly"
-                    />
+                    
                     <ReactCameraPro ref={cameraRef} aspectRatio={16/9} />
                     <button onClick={handlePhotoTaken}>📷</button>
                     {image && <img src={image} alt='Taken' />}

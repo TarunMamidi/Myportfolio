@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-
 import DraggableWrapper from '../../Components/Draggable/DraggableWrapper';
 import { Camera as ReactCameraPro } from 'react-camera-pro';
 import './Camera.css';

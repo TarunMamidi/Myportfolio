@@ -13,7 +13,7 @@ import chartimg from '../../Assests/skill.png';
 import cameraimg from '../../Assests/camera.png';
 import pinnedimg from '../../Assests/pinned.png';
 import unpinnedimg from '../../Assests/unpinned.png'
-import cusimg from '../../Assests/cuscur.png'
+import cusimg from '../../Assests/application.png'
 
 
 const Appbar = ({ onAppDoubleClick }) => {

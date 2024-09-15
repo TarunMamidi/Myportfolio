@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Bar.css';
+import sleep from '../../Assests/sleepmode.png';
 import Calendar from '../Calendar/Calendar';
 
-const Bar = ({ notification }) => {
+const Bar = ({ notification, handleSleep }) => {
     const [time, setTime] = useState(new Date());
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [is24HourFormat, setIs24HourFormat] = useState(true);
+    const [showTooltip, setShowTooltip] = useState(false); 
 
     const clockRef = useRef(null);
 
@@ -89,17 +91,27 @@ const Bar = ({ notification }) => {
             </div>
             <div className={`message-box ${showMessage ? 'active' : ''}`}>
                 <div>
-                    
                     <p>{notification}</p>
                     <button className='time-format-toggle' onClick={toggleTimeFormat}>
-                        {is24HourFormat ? 'Change formate to 12hr' : 'Change formate to 24hr'}
+                        {is24HourFormat ? 'Change format to 12hr' : 'Change format to 24hr'}
                     </button>
-                    <Calendar/>
+                    <Calendar />
                 </div>
             </div>
-            <button className='fullscreen-button' onClick={toggleFullscreen}>
-                {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-            </button>
+            
+            <div className='topmenu'>
+                <div 
+                    className='sleep-icon-container' 
+                    onMouseEnter={() => setShowTooltip(true)} 
+                    onMouseLeave={() => setShowTooltip(false)}
+                >
+                    <img className='sleep' src={sleep} alt="Sleep Mode" onClick={handleSleep} />
+                    {showTooltip && <div className='tool-tip'>Sleep</div>}
+                </div>
+                <button className='fullscreen-button' onClick={toggleFullscreen}>
+                    {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+                </button>
+            </div>
         </div>
     );
 };

@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='menu-icon' onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
-      <div className={`content ${isOpen ? 'open' : ''}`}>
+      <div className={`rows ${isOpen ? 'open' : ''}`}>
         <div className='close-icon' onClick={toggleMenu}><FaTimes /></div>
         <div className='ic'>Home</div>
         <div className='ic'>About</div>

@@ -2,10 +2,11 @@
 
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     height: 80px;
     margin-top: 20px;
     background: linear-gradient(rgba(50, 50, 50, 0.5), rgba(255, 255, 255, 0.195));
@@ -29,7 +30,7 @@
     animation: spring 1s;
 }
 
-.content {
+.rows {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -69,7 +70,7 @@
 }
 
 .menu-icon {
-    display: none; /* Initially hide the menu icon */
+    display: none; 
 }
 .close-icon{
     display: none;

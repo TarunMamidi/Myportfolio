@@ -56,7 +56,7 @@ const Typewriter = () => {
                     </div>
                     <div className='inside'>
                         <div className='frontend'>
-                            <div>Frontend Developer</div>
+                            <div>Frontend</div>
                             <div className='grid-container'>
                                 <div className='comp'><img src={htmllogo} alt="" />HTML</div>
                                 <div className='comp'><img src={csslogo} alt="" />CSS</div>
@@ -68,7 +68,7 @@ const Typewriter = () => {
                     </div>
                     <div className='inside'>
                         <div className='frontend'>
-                            <div>Backend Developer</div>
+                            <div>Backend</div>
                             <div className='grid-container'>
                                 <div className='comp'><img src={nodelogo} alt="" />Node.js</div>
                                 <div className='comp'><img src={expresslogo} alt="" />Express</div>

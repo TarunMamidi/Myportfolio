@@ -6,7 +6,7 @@ import crossimg from '../../Assests/close.png';
 import terminalimg from '../../Assests/terminal.png';
 
 const commands = {
-  help: "Available commands: help, whois, education, skills, experience, and also we can open apps from terminal",
+  help: "Available commands: help, whois, education, skills, experience, lock and also we can open apps from terminal",
   whois: "My name is Sriman Tarun. I am a FullStack developer.",
   education: "I have a degree in ECE from Vishnu Institute of Technology.",
   skills: "JavaScript, React, Node.js, Python, ...",
@@ -17,10 +17,11 @@ const commands = {
   browser: "Opening Browser app...",
   info: "Opening Info app...",
   exit: "closing terminal...",
-  settings: "Opening Settings app..."
+  settings: "Opening Settings app...",
+  lock: "Locking the OS"
 };
 
-const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenSettings, onOpenHelp, onOpenBrowser }) => {
+const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, onOpenCalculator, onOpenAbout, onOpenSettings, onOpenHelp, onOpenBrowser,handleSleep }) => {
   const [size, setSize] = useState({ width: 400, height: 300 });
   const [closing, setClosing] = useState(false);
   const [input, setInput] = useState('');
@@ -134,6 +135,9 @@ const Terminal = ({ onClose, initialPosition, onUpdatePosition, onOpenProfile, o
           }
           if (command === 'browser') {
             onOpenBrowser();
+          }
+          if (command === 'lock') {
+            handleSleep();
           }
 
         }, 0);

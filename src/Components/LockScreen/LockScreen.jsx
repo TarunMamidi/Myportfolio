@@ -3,6 +3,7 @@ import './LockScreen.css';
 
 const LockScreen = ({ onUnlock }) => {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [isLocked, setIsLocked] = useState(true);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -12,24 +13,29 @@ const LockScreen = ({ onUnlock }) => {
         return () => clearInterval(interval);
     }, []);
 
-    
-
     const handleScreenClick = () => {
-        onUnlock();
+        setIsLocked(false); // Trigger unlock animation
+        setTimeout(() => {
+            onUnlock(); // Call onUnlock after the animation finishes
+        }, 1000); // Adjust the timeout to match the CSS transition duration
     };
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            onUnlock();
+            handleScreenClick();
         }
     };
 
     return (
-        <div className="lockscreen-container" onClick={handleScreenClick} onKeyDown={handleKeyPress} tabIndex={0}>
+        <div
+            className={`lockscreen-container ${isLocked ? '' : 'unlocked'}`}
+            onClick={handleScreenClick}
+            onKeyDown={handleKeyPress}
+            tabIndex={0}
+        >
             <div className="lockscreen-content">
                 <div className="clocks">{currentTime.toLocaleTimeString()}</div>
-                <div className='instruction'>Click any Where to Unlock</div>
-                
+                <div className='instruction'>Click anywhere to unlock</div>
             </div>
         </div>
     );

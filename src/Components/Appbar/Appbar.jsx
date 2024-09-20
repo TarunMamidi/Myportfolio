@@ -14,6 +14,7 @@ import cameraimg from '../../Assests/camera.png';
 import pinnedimg from '../../Assests/pinned.png';
 import unpinnedimg from '../../Assests/unpinned.png'
 import cusimg from '../../Assests/application.png'
+import mediaimg from '../../Assests/music.png'
 
 
 const Appbar = ({ onAppDoubleClick }) => {
@@ -31,6 +32,7 @@ const Appbar = ({ onAppDoubleClick }) => {
         { id: 8, name: 'AI Chatbot', image: aiimg, pinned: false },
         { id: 9, name: 'Skills', image: chartimg, pinned: false },
         { id: 10, name: 'Camera', image: cameraimg, pinned: false },
+        { id: 11, name: 'Music', image: mediaimg, pinned: false },
     ]);
 
     const menuRef = useRef(null);

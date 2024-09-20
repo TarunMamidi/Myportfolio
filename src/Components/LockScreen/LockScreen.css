@@ -1,3 +1,25 @@
+@keyframes lockScreenFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes lockScreenFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
 .lockscreen-container {
     display: flex;
     justify-content: center;
@@ -9,17 +31,14 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.487);
     z-index: 1000;
-    opacity: 1; 
-    transition: opacity 0.3s ease, transform 0.5s ease-out; 
+    opacity: 1;
     transform: translateY(0%);
+    animation: lockScreenFadeIn 1s ease-out forwards; /* Default locked state animation */
     backdrop-filter: blur(10px);
-
 }
 
 .lockscreen-container.unlocked {
-    opacity: 0; 
-    transform: translateY(-100%);
-    transition: 1s;
+    animation: lockScreenFadeOut 1s ease-out forwards; /* Unlock animation */
 }
 
 .lockscreen-content {
@@ -36,6 +55,12 @@
     font-size: 300px;
     margin-bottom: 20px;
     color: white;
+}
+
+.instruction {
+    font-size: 24px;
+    color: white;
+    margin-top: 20px;
 }
 
 .lockscreen-content button {

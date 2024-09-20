@@ -14,8 +14,9 @@ import LockScreen from './Components/LockScreen/LockScreen';
 import Search from './Apps/Search/Search';
 import Myai from './Apps/Myai/Myai';
 import Charts from './Apps/Charts/Charts';
-import defaultimg from './Assests/wallpaper.jpg';
+import defaultimg from './Assests/wallpaper.jpg'
 import Camera from './Apps/Camera/Camera';
+import MediaPlayer from './Apps/Mediaplayer/Mediaplayer';
 
 const getRandomPosition = () => {
     const appWidth = 300;
@@ -34,7 +35,7 @@ const App = () => {
     const [notification, setNotification] = useState('');
     const [loading, setLoading] = useState(true);
     const [isLocked, setIsLocked] = useState(true);
-    const [bgImage, setBgImage] = useState(defaultimg);
+    const [bgImage, setBgImage] = useState(defaultimg); 
 
     const handleAppDoubleClick = (appId) => {
         const existingApp = activeApps.find(app => app.id === appId);
@@ -68,19 +69,62 @@ const App = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 3000);
+        setTimeout(() => setLoading(false), 3000); 
     }, []);
 
     const handleUnlock = () => {
         setIsLocked(false);
     };
 
-    const handleSleep = () => {
-        setIsLocked(true); // Set the app to locked mode when sleep is clicked
+    const handleOpenCalculator = () => {
+        const calculatorApp = { id: 6, position: getRandomPosition() };
+        setActiveApps([...activeApps, calculatorApp]);
+        setActiveAppId(6); 
     };
+
+    const handleOpenProfile = () => {
+        const profileApp = { id: 1, position: getRandomPosition() };
+        setActiveApps([...activeApps, profileApp]);
+        setActiveAppId(1); 
+    };
+
+    const handleOpenAbout = () => {
+        const aboutApp = { id: 2, position: getRandomPosition() };
+        setActiveApps([...activeApps, aboutApp]);
+        setActiveAppId(2); 
+    };
+
+    const handleOpenSettings = () => {
+        const settingsApp = { id: 3, position: getRandomPosition() };
+        setActiveApps([...activeApps, settingsApp]);
+        setActiveAppId(3); 
+    };
+
+    const handleOpenHelp = () => {
+        const helpApp = { id: 4, position: getRandomPosition() };
+        setActiveApps([...activeApps, helpApp]);
+        setActiveAppId(4); 
+    };
+
+    const handleOpenBrowser = () => {
+        const browserApp = { id: 7, position: getRandomPosition() };
+        setActiveApps([...activeApps, browserApp]);
+        setActiveAppId(7); 
+    };
+    const handleOpenTerminal = () =>{
+        const terminalApp = {id: 5, position: getRandomPosition() };
+        setActiveApps([...activeApps, terminalApp]);
+        setActiveAppId(5); 
+
+    }
 
     const updateBgImage = (newImage) => {
         setBgImage(newImage);
+    };
+
+
+    const handleSleep = () => {
+        setIsLocked(true); 
     };
 
     return (
@@ -92,7 +136,7 @@ const App = () => {
                     {isLocked && <LockScreen onUnlock={handleUnlock} />}
                     {!isLocked && (
                         <>
-                            <Bar notification={notification} handleSleep={handleSleep} /> {/* Pass handleSleep to Bar */}
+                            <Bar notification={notification} handleSleep={handleSleep}/>
                             <Appbar onAppDoubleClick={handleAppDoubleClick} />
                             <div className="app-container">
                                 {activeApps.map(app => {
@@ -101,8 +145,16 @@ const App = () => {
                                         onClose: () => handleCloseApp(app.id),
                                         initialPosition: app.position,
                                         onUpdatePosition: (pos) => handleUpdatePosition(app.id, pos),
+                                        onOpenProfile: handleOpenProfile,
+                                        onOpenCalculator: handleOpenCalculator, 
+                                        onOpenAbout: handleOpenAbout,
+                                        onOpenSettings: handleOpenSettings,
+                                        onOpenHelp: handleOpenHelp,
+                                        onOpenBrowser: handleOpenBrowser,
+                                        onOpenTerminal: handleOpenTerminal,
                                         onClick: () => handleAppClick(app.id),
-                                        className: app.id === activeAppId ? 'active' : ''
+                                        className: app.id === activeAppId ? 'active' : '',
+                                        handleSleep: handleSleep
                                     };
 
                                     switch (app.id) {
@@ -111,11 +163,11 @@ const App = () => {
                                         case 2:
                                             return <About {...commonProps} />;
                                         case 3:
-                                            return <Settings {...commonProps} updateBgImage={updateBgImage} />;
+                                            return <Settings {...commonProps} updateBgImage={updateBgImage} />; // Pass the function as a prop
                                         case 4:
                                             return <Help {...commonProps} />;
                                         case 5:
-                                            return <Terminal {...commonProps} />;
+                                            return <Terminal {...commonProps}  handleSleep={handleSleep}/>;
                                         case 6:
                                             return <Calculator {...commonProps} />;
                                         case 7:
@@ -128,6 +180,8 @@ const App = () => {
                                             return <Search {...commonProps} />;
                                         case 10:
                                             return <Camera {...commonProps} />;
+                                        case 11:
+                                            return <MediaPlayer {...commonProps} />;
                                         default:
                                             return null;
                                     }

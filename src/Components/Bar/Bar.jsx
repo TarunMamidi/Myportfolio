@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Bar.css';
-import sleep from '../../Assests/sleepmode.png';
+import sleep from '../../Assests/lockicon.png';
 import Calendar from '../Calendar/Calendar';
 
 const Bar = ({ notification, handleSleep }) => {
     const [time, setTime] = useState(new Date());
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
-    const [is24HourFormat, setIs24HourFormat] = useState(true);
+    const [is24HourFormat, setIs24HourFormat] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false); 
 
     const clockRef = useRef(null);
@@ -106,7 +106,7 @@ const Bar = ({ notification, handleSleep }) => {
                     onMouseLeave={() => setShowTooltip(false)}
                 >
                     <img className='sleep' src={sleep} alt="Sleep Mode" onClick={handleSleep} />
-                    {showTooltip && <div className='tool-tip'>Sleep</div>}
+                    {showTooltip && <div className='tool-tip'>Lock</div>}
                 </div>
                 <button className='fullscreen-button' onClick={toggleFullscreen}>
                     {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}

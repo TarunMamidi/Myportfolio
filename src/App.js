@@ -26,7 +26,7 @@ const getRandomPosition = () => {
     const x = Math.floor(Math.random() * (window.innerWidth - appWidth - margin * 2 - 1000)) + margin;
     const y = Math.floor(Math.random() * (window.innerHeight - appHeight - margin * 2 - 100)) + margin;
 
-    return { x, y };
+    return { x, y, zIndex: 1 }; // Start with a default zIndex
 };
 
 const App = () => {
@@ -36,12 +36,12 @@ const App = () => {
     const [loading, setLoading] = useState(true);
     const [isLocked, setIsLocked] = useState(true);
     const [bgImage, setBgImage] = useState(defaultimg);
-    const [isMobile, setIsMobile] = useState(false); // New state to track if device is mobile
+    const [isMobile, setIsMobile] = useState(false);
 
     const handleAppDoubleClick = (appId) => {
         const existingApp = activeApps.find(app => app.id === appId);
         if (!existingApp) {
-            setActiveApps([...activeApps, { id: appId, position: getRandomPosition() }]);
+            setActiveApps([...activeApps, { id: appId, position: getRandomPosition(), zIndex: activeApps.length + 1 }]);
             setActiveAppId(appId);
         } else {
             setActiveAppId(appId);
@@ -65,6 +65,14 @@ const App = () => {
         const existingApp = activeApps.find(app => app.id === appId);
         if (existingApp) {
             setNotification(`App ${appId} is already active.`);
+            
+            const updatedApps = activeApps.map(app => {
+                if (app.id === appId) {
+                    return { ...app, zIndex: Math.max(...activeApps.map(a => a.zIndex)) + 1 };
+                }
+                return app;
+            });
+            setActiveApps(updatedApps);
         }
         setActiveAppId(appId);
     };
@@ -78,43 +86,43 @@ const App = () => {
     };
 
     const handleOpenCalculator = () => {
-        const calculatorApp = { id: 6, position: getRandomPosition() };
+        const calculatorApp = { id: 6, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, calculatorApp]);
         setActiveAppId(6);
     };
 
     const handleOpenProfile = () => {
-        const profileApp = { id: 1, position: getRandomPosition() };
+        const profileApp = { id: 1, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, profileApp]);
         setActiveAppId(1);
     };
 
     const handleOpenAbout = () => {
-        const aboutApp = { id: 2, position: getRandomPosition() };
+        const aboutApp = { id: 2, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, aboutApp]);
         setActiveAppId(2);
     };
 
     const handleOpenSettings = () => {
-        const settingsApp = { id: 3, position: getRandomPosition() };
+        const settingsApp = { id: 3, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, settingsApp]);
         setActiveAppId(3);
     };
 
     const handleOpenHelp = () => {
-        const helpApp = { id: 4, position: getRandomPosition() };
+        const helpApp = { id: 4, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, helpApp]);
         setActiveAppId(4);
     };
 
     const handleOpenBrowser = () => {
-        const browserApp = { id: 7, position: getRandomPosition() };
+        const browserApp = { id: 7, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, browserApp]);
         setActiveAppId(7);
     };
 
     const handleOpenTerminal = () => {
-        const terminalApp = { id: 5, position: getRandomPosition() };
+        const terminalApp = { id: 5, position: getRandomPosition(), zIndex: activeApps.length + 1 };
         setActiveApps([...activeApps, terminalApp]);
         setActiveAppId(5);
     };
@@ -127,7 +135,6 @@ const App = () => {
         setIsLocked(true);
     };
 
-    
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 1024) {
@@ -137,16 +144,15 @@ const App = () => {
             }
         };
 
-        handleResize(); 
-        window.addEventListener('resize', handleResize); 
+        handleResize();
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize); 
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
     if (isMobile) {
-        
         return (
             <div className="no-mobile">
                 <h1>This website is not available on mobile devices.</h1>
@@ -182,7 +188,8 @@ const App = () => {
                                         onOpenTerminal: handleOpenTerminal,
                                         onClick: () => handleAppClick(app.id),
                                         className: app.id === activeAppId ? 'active' : '',
-                                        handleSleep: handleSleep
+                                        handleSleep: handleSleep,
+                                        zIndex: app.zIndex, // Pass the zIndex to the app
                                     };
 
                                     switch (app.id) {

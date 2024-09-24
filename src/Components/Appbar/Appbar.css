@@ -170,10 +170,16 @@
 .pinned{
     width: 30px;
     height: 30px;
+    background-color: rgb(78, 78, 78);
+    border-radius: 100%;
+    transition: 0.5s;
 }
 .unpinned{
     width: 30px;
     height: 30px;
+    background-color: rgb(78, 78, 78);
+    border-radius: 100%;
+    transition: 0.5s;
 }
 
 /* Responsive styles */

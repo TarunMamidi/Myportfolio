@@ -20,15 +20,14 @@ body{
 .app-container > div {
   position: absolute;
   cursor: pointer;
+  z-index: auto;
 }
 
 .app-container > div.active {
   z-index: 1000; 
 }
 
-.app-container > div {
-  z-index: 10; 
-}
+
 
 @media (max-width: 1024px) {
   .App {

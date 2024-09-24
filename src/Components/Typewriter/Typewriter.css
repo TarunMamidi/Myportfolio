@@ -1,4 +1,4 @@
-/* Global Styles */
+
 .typemain {
   height: 100vh;
   color: white;
@@ -8,14 +8,13 @@
   cursor: url('../../Assests/cuscur.png');
 }
 
-/* Main Container */
 .namas {
   font-size: 40px;
   margin-top: 10%;
   animation: fadeIn 1s ease-out;
 }
 
-/* Gradient Text */
+
 .gradient-text {
   background: linear-gradient(to right, #3494e6, #ec6ead);
   background-clip: text;
@@ -25,17 +24,16 @@
   animation: gradient-animation 5s ease infinite;
 }
 
-/* Box */
+
 .box {
   margin-right: 40%;
 }
 
-/* Size Cursor */
 .sizecur {
   font-size: 200px;
 }
 
-/* Myself Section */
+
 .myself {
   font-size: 30px;
   font-weight: lighter;
@@ -46,7 +44,7 @@
   animation: slideIn 1s ease-out;
 }
 
-/* Head Section */
+
 .head {
   display: flex;
   align-items: center;
@@ -64,7 +62,7 @@
   animation: gradient-animation 5s ease infinite;
 }
 
-/* Line */
+
 .line {
   flex-grow: 1;
   height: 2px;
@@ -73,7 +71,7 @@
   animation: gradient-line-animation 5s ease infinite;
 }
 
-/* Frontend Section */
+
 .frontend {
   text-align: center;
   font-size: 30px;
@@ -100,7 +98,6 @@
               0 15px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Handshake Animation */
 .handshake {
   font-size: 25px;
   display: inline-block;
@@ -108,7 +105,7 @@
   transform-origin: 70% 70%;
 }
 
-/* Keyframe Animations */
+
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -177,7 +174,7 @@
   }
 }
 
-/* Block Animation */
+
 .block {
   animation: appear linear;
   animation-timeline: view();
@@ -185,7 +182,7 @@
   margin-top: 30%;
 }
 
-/* Grid Container */
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -193,7 +190,7 @@
   gap: 10px;
 }
 
-/* Component Styles */
+
 .comp {
   display: flex;
   align-items: center;
@@ -220,7 +217,7 @@
   margin-right: 10px; 
 }
 
-/* Media Queries */
+
 @media (max-width: 1200px) {
   .namas {
     font-size: 30px;

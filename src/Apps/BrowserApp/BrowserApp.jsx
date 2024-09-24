@@ -76,7 +76,7 @@ const BrowserApp = ({ onClose, initialPosition, onUpdatePosition }) => {
                         <option value="https://heather-daffy-bug.glitch.me/">Number Verification</option>
                         <option value="https://fluff-chivalrous-hisser.glitch.me/">Text-to-Speech</option>
                         <option value="https://myportfolio-srimantarun.vercel.app/">Portfolio</option>
-                        <option value="https://menskart-tarunmamidi-tarunmamidis-projects.vercel.app/">Portfolio</option>
+                        <option value="https://menskart-tarunmamidi-tarunmamidis-projects.vercel.app/">Menskart</option>
                     </select>
                     <p className='close-buttonb' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>

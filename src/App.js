@@ -14,7 +14,7 @@ import LockScreen from './Components/LockScreen/LockScreen';
 import Search from './Apps/Search/Search';
 import Myai from './Apps/Myai/Myai';
 import Charts from './Apps/Charts/Charts';
-import defaultimg from './Assests/wallpaper.jpg'
+import defaultimg from './Assests/wallpaper.jpg';
 import Camera from './Apps/Camera/Camera';
 import MediaPlayer from './Apps/Mediaplayer/Mediaplayer';
 
@@ -35,7 +35,8 @@ const App = () => {
     const [notification, setNotification] = useState('');
     const [loading, setLoading] = useState(true);
     const [isLocked, setIsLocked] = useState(true);
-    const [bgImage, setBgImage] = useState(defaultimg); 
+    const [bgImage, setBgImage] = useState(defaultimg);
+    const [isMobile, setIsMobile] = useState(false); // New state to track if device is mobile
 
     const handleAppDoubleClick = (appId) => {
         const existingApp = activeApps.find(app => app.id === appId);
@@ -69,7 +70,7 @@ const App = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 3000); 
+        setTimeout(() => setLoading(false), 3000);
     }, []);
 
     const handleUnlock = () => {
@@ -79,53 +80,80 @@ const App = () => {
     const handleOpenCalculator = () => {
         const calculatorApp = { id: 6, position: getRandomPosition() };
         setActiveApps([...activeApps, calculatorApp]);
-        setActiveAppId(6); 
+        setActiveAppId(6);
     };
 
     const handleOpenProfile = () => {
         const profileApp = { id: 1, position: getRandomPosition() };
         setActiveApps([...activeApps, profileApp]);
-        setActiveAppId(1); 
+        setActiveAppId(1);
     };
 
     const handleOpenAbout = () => {
         const aboutApp = { id: 2, position: getRandomPosition() };
         setActiveApps([...activeApps, aboutApp]);
-        setActiveAppId(2); 
+        setActiveAppId(2);
     };
 
     const handleOpenSettings = () => {
         const settingsApp = { id: 3, position: getRandomPosition() };
         setActiveApps([...activeApps, settingsApp]);
-        setActiveAppId(3); 
+        setActiveAppId(3);
     };
 
     const handleOpenHelp = () => {
         const helpApp = { id: 4, position: getRandomPosition() };
         setActiveApps([...activeApps, helpApp]);
-        setActiveAppId(4); 
+        setActiveAppId(4);
     };
 
     const handleOpenBrowser = () => {
         const browserApp = { id: 7, position: getRandomPosition() };
         setActiveApps([...activeApps, browserApp]);
-        setActiveAppId(7); 
+        setActiveAppId(7);
     };
-    const handleOpenTerminal = () =>{
-        const terminalApp = {id: 5, position: getRandomPosition() };
-        setActiveApps([...activeApps, terminalApp]);
-        setActiveAppId(5); 
 
-    }
+    const handleOpenTerminal = () => {
+        const terminalApp = { id: 5, position: getRandomPosition() };
+        setActiveApps([...activeApps, terminalApp]);
+        setActiveAppId(5);
+    };
 
     const updateBgImage = (newImage) => {
         setBgImage(newImage);
     };
 
-
     const handleSleep = () => {
-        setIsLocked(true); 
+        setIsLocked(true);
     };
+
+    
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 1024) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
+
+        handleResize(); 
+        window.addEventListener('resize', handleResize); 
+
+        return () => {
+            window.removeEventListener('resize', handleResize); 
+        };
+    }, []);
+
+    if (isMobile) {
+        
+        return (
+            <div className="no-mobile">
+                <h1>This website is not available on mobile devices.</h1>
+                <p>Please use a laptop or desktop to access the site.</p>
+            </div>
+        );
+    }
 
     return (
         <div className="App" style={{ backgroundImage: `url(${bgImage})` }}>
@@ -136,7 +164,7 @@ const App = () => {
                     {isLocked && <LockScreen onUnlock={handleUnlock} />}
                     {!isLocked && (
                         <>
-                            <Bar notification={notification} handleSleep={handleSleep}/>
+                            <Bar notification={notification} handleSleep={handleSleep} />
                             <Appbar onAppDoubleClick={handleAppDoubleClick} />
                             <div className="app-container">
                                 {activeApps.map(app => {
@@ -146,7 +174,7 @@ const App = () => {
                                         initialPosition: app.position,
                                         onUpdatePosition: (pos) => handleUpdatePosition(app.id, pos),
                                         onOpenProfile: handleOpenProfile,
-                                        onOpenCalculator: handleOpenCalculator, 
+                                        onOpenCalculator: handleOpenCalculator,
                                         onOpenAbout: handleOpenAbout,
                                         onOpenSettings: handleOpenSettings,
                                         onOpenHelp: handleOpenHelp,
@@ -163,11 +191,11 @@ const App = () => {
                                         case 2:
                                             return <About {...commonProps} />;
                                         case 3:
-                                            return <Settings {...commonProps} updateBgImage={updateBgImage} />; // Pass the function as a prop
+                                            return <Settings {...commonProps} updateBgImage={updateBgImage} />;
                                         case 4:
                                             return <Help {...commonProps} />;
                                         case 5:
-                                            return <Terminal {...commonProps}  handleSleep={handleSleep}/>;
+                                            return <Terminal {...commonProps} handleSleep={handleSleep} />;
                                         case 6:
                                             return <Calculator {...commonProps} />;
                                         case 7:

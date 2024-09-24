@@ -21,7 +21,7 @@ const Appbar = ({ onAppDoubleClick }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [apps, setApps] = useState([
-        { id: 0, name: 'Search', image: searchimg, pinned: true },
+        { id: 0, name: 'Search', image: searchimg, pinned: false },
         { id: 1, name: 'Profile', image: profileimg, pinned: true },
         { id: 2, name: 'About', image: aboutimg, pinned: true },
         { id: 3, name: 'Settings', image: settingimg, pinned: true },

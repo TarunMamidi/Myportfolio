@@ -29,3 +29,38 @@ body{
 .app-container > div {
   z-index: 10; 
 }
+
+@media (max-width: 1024px) {
+  .App {
+    display: none;
+  }
+
+  .mobile-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+
+  .mobile-message h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .mobile-message p {
+    font-size: 1.2rem;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .App {
+    display: fixed;
+  }
+}

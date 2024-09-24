@@ -146,6 +146,20 @@
     margin-top: 30px;
 }
 
+.downresume {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    z-index: 1000;
+}
+
+button{
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
 /* Media Queries */
 @media (max-width: 1200px) {
     .profiles-app {
@@ -216,3 +230,4 @@
         padding: 5px;
     }
 }
+

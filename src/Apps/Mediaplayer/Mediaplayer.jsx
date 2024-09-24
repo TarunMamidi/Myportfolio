@@ -62,7 +62,7 @@ const MediaPlayer = ({ onClose, initialPosition, onUpdatePosition }) => {
                 <div className='top-bar'>
                     <div className='adjtop'>
                         <h2 className='app-title'><img src={mediaIcon} alt="Media" /></h2>
-                        <h2 className='app-title'>Media Player</h2>
+                        <h2 className='app-title'>Music</h2>
                     </div>
                     <p className='close-button' onClick={handleClose}><img src={crossimg} alt="Close" /></p>
                 </div>

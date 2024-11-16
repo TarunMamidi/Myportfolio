@@ -15,6 +15,7 @@ import pinnedimg from '../../Assests/pinned.png';
 import unpinnedimg from '../../Assests/unpinned.png'
 import cusimg from '../../Assests/application.png'
 import mediaimg from '../../Assests/music.png'
+import snake from '../../Assests/rattlesnake.png'
 
 
 const Appbar = ({ onAppDoubleClick }) => {
@@ -33,6 +34,7 @@ const Appbar = ({ onAppDoubleClick }) => {
         { id: 9, name: 'Skills', image: chartimg, pinned: false },
         { id: 10, name: 'Camera', image: cameraimg, pinned: false },
         { id: 11, name: 'Music', image: mediaimg, pinned: false },
+        { id: 12, name: 'Snake Game', image: snake, pinned: true },
     ]);
 
     const menuRef = useRef(null);

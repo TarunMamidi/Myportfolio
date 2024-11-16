@@ -24,6 +24,17 @@
   animation: gradient-animation 5s ease infinite;
 }
 
+.promain{
+  display: flex;
+  flex-direction: row;
+}
+
+.profilephoto img{
+  width: 500px;
+  height: 500px;
+  margin-top: 15%;
+  border-radius: 100%;
+}
 
 .box {
   margin-right: 40%;

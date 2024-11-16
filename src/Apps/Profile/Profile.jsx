@@ -8,7 +8,7 @@ import maximizeimg from '../../Assests/maximize.png';
 import restoreimg from '../../Assests/restore.png';
 import Typewriter from '../../Components/Typewriter/Typewriter';
 import Navbar from '../../Components/Navbar/Navbar';
-import resume from '../../Assests/newresume.pdf'
+
 
 const Profile = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [size, setSize] = useState({ width: 400, height: 300 });
@@ -79,11 +79,7 @@ const Profile = ({ onClose, initialPosition, onUpdatePosition }) => {
                         onMouseDown={handleMouseDown}
                     />
                 )}
-                <div className='downresume'>
-                    <a href={resume} download="newresume.pdf">
-                        <button type='button'>Download</button>
-                    </a>
-                </div>
+               
             </div>
         </DraggableWrapper>
     );

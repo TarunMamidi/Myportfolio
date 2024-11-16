@@ -17,6 +17,7 @@ import Charts from './Apps/Charts/Charts';
 import defaultimg from './Assests/wallpaper.jpg';
 import Camera from './Apps/Camera/Camera';
 import MediaPlayer from './Apps/Mediaplayer/Mediaplayer';
+import Snakegame from './Apps/Snakegame/Snakegame';
 
 const getRandomPosition = () => {
     const appWidth = 300;
@@ -217,6 +218,8 @@ const App = () => {
                                             return <Camera {...commonProps} />;
                                         case 11:
                                             return <MediaPlayer {...commonProps} />;
+                                        case 12:
+                                            return <Snakegame {...commonProps} />;
                                         default:
                                             return null;
                                     }

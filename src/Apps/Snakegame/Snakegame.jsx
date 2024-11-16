@@ -13,6 +13,7 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0); // State for the score
     const [gameStarted, setGameStarted] = useState(false); // State for welcome screen
+    const [loading, setLoading] = useState(false); // State for loading animation
     const profileRef = useRef(null);
 
     // Reset the game state
@@ -119,7 +120,11 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
 
     // Handle start game
     const handleStart = () => {
-        setGameStarted(true); // Start the game
+        setLoading(true); // Show loading animation
+        setTimeout(() => {
+            setLoading(false); // Hide loading animation after 2 seconds
+            setGameStarted(true); // Start the game
+        }, 2000); // Simulate loading time (2 seconds)
     };
 
     return (
@@ -176,6 +181,12 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
                                 </div>
                             )}
                         </>
+                    )}
+                    {loading && (
+                        <div className="loading-screen">
+                            <div className="snake-animation"></div>
+                            <p>Loading...</p>
+                        </div>
                     )}
                 </div>
                 <div className="resizer" onMouseDown={handleMouseDown} />

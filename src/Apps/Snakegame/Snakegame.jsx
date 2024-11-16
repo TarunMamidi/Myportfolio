@@ -12,6 +12,7 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
     const [food, setFood] = useState({ x: 15, y: 15 });
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState(0); // State for the score
+    const [gameStarted, setGameStarted] = useState(false); // State for welcome screen
     const profileRef = useRef(null);
 
     // Reset the game state
@@ -116,6 +117,11 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
         resetGame();  // Reset game state when restarting
     };
 
+    // Handle start game
+    const handleStart = () => {
+        setGameStarted(true); // Start the game
+    };
+
     return (
         <DraggableWrapper initialPosition={initialPosition} onUpdatePosition={onUpdatePosition}>
             <div
@@ -135,32 +141,41 @@ const Snakegame = ({ onClose, initialPosition, onUpdatePosition }) => {
                     </p>
                 </div>
                 <div className="contentm">
-                    <div className="score">
-                        <h3>Score: {score}</h3> {/* Display score here */}
-                    </div>
-                    {gameOver ? (
-                        <div className="game-over">
-                            <h1>Game Over</h1>
-                            <p>Final Score: {score}</p> {/* Display final score */}
-                            <button onClick={handleRestart}>Restart</button> {/* Restart game */}
+                    {!gameStarted ? (
+                        <div className="welcome-screen">
+                            <h3>Welcome to the Snake Game</h3>
+                            <button onClick={handleStart}>Start Game</button>
                         </div>
                     ) : (
-                        <div className="game-board">
-                            {Array.from({ length: 20 }, (_, y) =>
-                                Array.from({ length: 20 }, (_, x) => (
-                                    <div
-                                        key={`${x}-${y}`}
-                                        className={`cell ${
-                                            snake.some((segment) => segment.x === x && segment.y === y)
-                                                ? 'snake'
-                                                : food.x === x && food.y === y
-                                                ? 'food'
-                                                : ''
-                                        }`}
-                                    ></div>
-                                ))
+                        <>
+                            <div className="score">
+                                <h3>Score: {score}</h3> {/* Display score here */}
+                            </div>
+                            {gameOver ? (
+                                <div className="game-over">
+                                    <h1>Game Over</h1>
+                                    <p>Final Score: {score}</p> {/* Display final score */}
+                                    <button onClick={handleRestart}>Restart</button> {/* Restart game */}
+                                </div>
+                            ) : (
+                                <div className="game-board">
+                                    {Array.from({ length: 20 }, (_, y) =>
+                                        Array.from({ length: 20 }, (_, x) => (
+                                            <div
+                                                key={`${x}-${y}`}
+                                                className={`cell ${
+                                                    snake.some((segment) => segment.x === x && segment.y === y)
+                                                        ? 'snake'
+                                                        : food.x === x && food.y === y
+                                                        ? 'food'
+                                                        : ''
+                                                }`}
+                                            ></div>
+                                        ))
+                                    )}
+                                </div>
                             )}
-                        </div>
+                        </>
                     )}
                 </div>
                 <div className="resizer" onMouseDown={handleMouseDown} />

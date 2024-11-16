@@ -178,3 +178,25 @@
     font-size: 20px;
     color: yellow;
 }
+
+.welcome-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: rgb(31, 31, 31);
+}
+
+.welcome-screen h3 {
+    margin-bottom: 20px;
+}
+
+.welcome-screen button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
